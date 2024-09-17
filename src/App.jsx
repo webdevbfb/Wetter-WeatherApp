@@ -24,8 +24,9 @@ const App = () => {
   };
 
   return (
+    <div className="box">
+    <h1>Wetter App</h1>
     <div className="card">
-      <h1>Wetter App</h1>
 
       {/* Komponente für die Suche nach einer Stadt */}
       <SearchCity onSearch={handleSearch} />
@@ -39,6 +40,7 @@ const App = () => {
       ) : (
         lat && lon && <WeatherDisplay lat={lat} lon={lon} unit={unit} />
       )}
+    </div>
     </div>
   );
 };

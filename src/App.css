@@ -1,42 +1,161 @@
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  --primary-color: #27c52f;
+  --secondary-color: #646cff;
+  --accent-color: #0c9930;
+  --bg-dark: #242424;
+  --bg-light: #ffffff;
+  --text-light: rgba(255, 255, 255, 0.87);
+  --text-dark: #213547;
+
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding-bottom: 2rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h1 {
+  font-size: 3em;
+  font-weight: 700;
 }
 
 .card {
-  padding: 2em;
+  background-color: #222;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: var(--text-light);
 }
 
-.read-the-docs {
-  color: #888;
+.box {
+  background-color: #333;
+  padding: 0rem 2rem 2rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: var(--text-light);
+}
+
+button, input {
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--accent-color);
+}
+
+input {
+  background-color: #6b6b6b;
+  color: #fff;
+  border: 1px solid #555;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--secondary-color);
+  background-color: #555;
+}
+
+input::placeholder {
+  color: #c1c1c1;
+}
+
+.weather-info {
+  text-align: left;
+  padding: 0.5rem 1.5rem;
+  background-color: #333;
+  border-radius: 8px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.weather-info h2 {
+  font-size: 2em;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+.weather-info p {
+  font-size: 1.2em;
+  margin: 0.5rem 0;
+}
+
+.weather-info .temperature {
+  font-size: 2.5em;
+}
+
+.weather-icon {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+.weather-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.temperature-toggle {
+  margin-top: 20px;
+}
+
+.temperature-toggle label {
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+.weather-video {
+  width: 100%;          /* Video nimmt die volle Breite ein */
+  height: auto;         /* Höhe wird automatisch angepasst, um das Seitenverhältnis zu bewahren */
+  max-height: 200px;    /* Optionale maximale Höhe für das Video, damit es nicht zu groß wird */
+  object-fit: cover;    /* Video wird so beschnitten, dass es den Container proportional füllt */
+  border-radius: 10px;  /* Optionale abgerundete Ecken */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Schatteneffekt */
+  overflow: hidden;     /* Zusätzlicher Schutz vor Überlauf */
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+  }
+
+  .card {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+  }
+
+  input {
+    background-color: #fff;
+    color: var(--text-dark);
+    border: 1px solid #ddd;
+  }
+
+  button {
+    background-color: var(--secondary-color);
+  }
 }
