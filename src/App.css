@@ -1,17 +1,34 @@
+/* Standard (Nachtmodus) */
 :root {
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  --primary-color: #27c52f;
-  --secondary-color: #646cff;
-  --accent-color: #0c9930;
-  --bg-dark: #242424;
-  --bg-light: #ffffff;
-  --text-light: rgba(255, 255, 255, 0.87);
-  --text-dark: #213547;
+  --primary-color: #3a9ad9;     /* Himmelblau */
+  --secondary-color: #1f3a93;   /* Dunkelblau */
+  --accent-color: #dfe4ea;      /* Hellgrau */
+  --bg-dark: #2f3640c2;           /* Dunkelgrau */
+  --my-dark: #222935;           /* Meine farbe */
+  --text-light: #ffffff;        /* Weiß */
+  --text-dark: #213547;         /* Dunkelgrau */
+  --hover-color: #287dbb;       /* Dunkleres Himmelblau */
+  --fa-primary-color: #cfcfcf;
+  --fa-secondary-color: #f6f924;
+  --fa-secondary-opacity: 0.8;
 
   color-scheme: light dark;
+}
+
+/* Tagmodus */
+.light-mode {
+  --primary-color: #f39c12;     /* Sonnengelb */
+  --secondary-color: #e67e22;   /* Orangeton */
+  --accent-color: #f1f2f6;      /* Helles Grau */
+  --bg-dark: #d8d8d8be;           /* Weiß */
+  --my-dark: #ecf0f1;           /* Hellgrau */
+  --text-light: #000000;        /* Schwarz */
+  --text-dark: #213547;         /* Dunkelgrau */
+  --hover-color: #d35400;       /* Dunkleres Orange */
 }
 
 body {
@@ -23,20 +40,44 @@ body {
   align-items: center;
   background-color: var(--bg-dark);
   color: var(--text-light);
+  position: relative;
+  overflow: hidden;
 }
 
-#root {
-  max-width: 1280px;
-  padding-bottom: 2rem;
+body.light-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
 }
 
-h1 {
-  font-size: 3em;
-  font-weight: 700;
+.card.light-mode {
+  background-color: var(--accent-color);
+  color: var(--text-dark);
 }
 
+.button {
+  background-color: var(--primary-color);
+}
+
+/* Schräg gestellte Balken im Hintergrund */
+body::before, body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(120deg, var(--primary-color) 50%, var(--secondary-color) 50%);
+  transform: skewY(-15deg);
+}
+
+body::after {
+  opacity: 0.5;
+}
+
+/* Hauptkarte der App */
 .card {
-  background-color: #222;
+  background-color: var(--my-dark);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -44,11 +85,32 @@ h1 {
 }
 
 .box {
-  background-color: #333;
-  padding: 0rem 2rem 2rem 2rem;
+  background-color: var(--bg-dark);
+  padding: 0rem 2rem 1rem 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: var(--text-light);
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  padding: 1rem 0.5rem;
+}
+
+i {
+  color: rgba(255, 255, 255, 0.349);
+}
+
+.local-time {
+  font-size: 0.8em;
+  color: #666; /* Leicht abgesetzte Farbe */
+  margin-left: 10px; /* Platz zwischen Stadt und Uhrzeit */
 }
 
 button, input {
@@ -59,44 +121,57 @@ button, input {
   font-size: 1em;
   font-weight: 500;
   background-color: var(--primary-color);
-  color: #fff;
+  color: var(--text-light);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: var(--accent-color);
+  background-color: var(--hover-color);
+}
+
+.mode-toggle {
+  font-size: x-large;
+  margin: 0;
+  padding: 5px 15px;
 }
 
 input {
-  background-color: #6b6b6b;
-  color: #fff;
+  background-color: var(--accent-color);
+  color: var(--text-dark);
   border: 1px solid #555;
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 input:focus {
   border-color: var(--secondary-color);
-  background-color: #555;
+  background-color: #c1c1c1;
 }
 
 input::placeholder {
-  color: #c1c1c1;
+  color: #888;
 }
 
 .weather-info {
   text-align: left;
   padding: 0.5rem 1.5rem;
-  background-color: #333;
+  background-color: var(--bg-dark);
   border-radius: 8px;
   margin-top: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.made-by {
+  margin-bottom: 0;
+  color: #8383835d;
+  text-align: end;
 }
 
 .weather-info h2 {
   font-size: 2em;
   margin-top: 0rem;
   margin-bottom: 0rem;
+  color: var(--primary-color);
 }
 
 .weather-info p {
@@ -106,6 +181,7 @@ input::placeholder {
 
 .weather-info .temperature {
   font-size: 2.5em;
+  color: var(--secondary-color);
 }
 
 .weather-icon {
@@ -119,33 +195,53 @@ input::placeholder {
   height: 100%;
 }
 
+/* Video passend eingebettet */
+.weather-video, .weather-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Temperatur-Umschalter */
 .temperature-toggle {
   margin-top: 20px;
 }
 
-.temperature-toggle label {
-  margin-right: 10px;
-  font-size: 1.1em;
+.temperature-toggle button {
+  background-color: var(--secondary-color);
 }
 
-.weather-video {
-  width: 100%;          /* Video nimmt die volle Breite ein */
-  height: auto;         /* Höhe wird automatisch angepasst, um das Seitenverhältnis zu bewahren */
-  max-height: 200px;    /* Optionale maximale Höhe für das Video, damit es nicht zu groß wird */
-  object-fit: cover;    /* Video wird so beschnitten, dass es den Container proportional füllt */
-  border-radius: 10px;  /* Optionale abgerundete Ecken */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Schatteneffekt */
-  overflow: hidden;     /* Zusätzlicher Schutz vor Überlauf */
+.temperature-toggle button:hover {
+  background-color: var(--hover-color);
 }
 
+.error-message {
+  color: #ff4d4d; /* Helles Rot für den Fehlertext */
+  background-color: #ffe6e6; /* Leichtes Rot für den Hintergrund */
+  border: 1px solid #ff0000; /* Roter Rand */
+  padding: 10px;
+  margin: 20px 10px 0 10px;
+  border-radius: 5px;
+  font-size: 1.2em; /* Größerer Text */
+  font-weight: bold; /* Fettgedruckter Text */
+  text-align: center; /* Zentrierter Text */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+
+/* Helle Farbpalette im "light"-Modus */
 @media (prefers-color-scheme: light) {
   body {
-    background-color: var(--bg-light);
+    background-color: var(--accent-color);
     color: var(--text-dark);
   }
 
   .card {
-    background-color: var(--bg-light);
+    background-color: var(--accent-color);
     color: var(--text-dark);
   }
 
@@ -156,6 +252,6 @@ input::placeholder {
   }
 
   button {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
   }
 }
