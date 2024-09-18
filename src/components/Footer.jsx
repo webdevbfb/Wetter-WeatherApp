@@ -23,7 +23,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     textDecoration: "none",
-    color: "darkblue",
+    color: "#9842b3",
   }
 };
 

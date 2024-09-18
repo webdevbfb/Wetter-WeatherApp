@@ -44,7 +44,7 @@ const WeatherDisplay = ({ lat, lon, city, unit }) => {
             case "clouds":
               setVideoSrc("/cloudy.mp4");
               break;
-            case "overcast":
+            case "broken clouds":
               setVideoSrc("/ice.mp4");
               break;
             case "mist":
