@@ -1,15 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// Importiere die Dateien aus dem src-Ordner
+import cloudyVideo from '../assets/cloudy.mp4';
+import iceVideo from '../assets/ice.mp4';
+import foggyVideo from '../assets/foggy.mp4';
+import lightningVideo from '../assets/lightning.mp4';
+import rainVideo from '../assets/rain.mp4';
+import snowVideo from '../assets/snow.mp4';
+import sunnyImage from '../assets/sunny.jpg';
+
 const WeatherDisplay = ({ lat, lon, city, unit }) => {
   const [weather, setWeather] = useState(null);
-  const [error, setError] = useState(null);  // Für Fehlerzustände
-  const [videoSrc, setVideoSrc] = useState("");  // Videoquelle als Zustand
-  const [localTime, setLocalTime] = useState(""); // Zustand für die lokale Zeit
+  const [error, setError] = useState(null);
+  const [videoSrc, setVideoSrc] = useState("");
+  const [localTime, setLocalTime] = useState("");
   const videoRef = useRef(null);
 
   useEffect(() => {
     let apiUrl = '';
-    const apiKey = 'f593fd275477df03bb93a759f1cffa69'; // Setze hier deinen API-Key ein
+    const apiKey = 'f593fd275477df03bb93a759f1cffa69';
 
     if (city) {
       apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
@@ -27,44 +36,38 @@ const WeatherDisplay = ({ lat, lon, city, unit }) => {
         })
         .then((data) => {
           setWeather(data);
-          setError(null);  // Kein Fehler
+          setError(null);
 
-          // Berechne die lokale Zeit der Stadt basierend auf der Zeitzonenverschiebung
-          // const timezoneOffsetInSeconds = data.timezone; // Zeitzonenverschiebung in Sekunden
-          // const localTimeInMs = new Date().getTime() + timezoneOffsetInSeconds * 1000; // Berechnung der aktuellen Zeit in Millisekunden
-          // const localTimeDate = new Date(localTimeInMs); // Datum und Zeit der Stadt
-
-          // Setze die Zeit im Zustand in einem gut lesbaren Format
           setLocalTime(new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }));
 
-          // Videoquelle basierend auf dem Wetter aktualisieren
           const weatherCondition = data.weather[0].main.toLowerCase();
           
+          // Videoquelle basierend auf dem Wetter aktualisieren
           switch (weatherCondition) {
             case "clouds":
-              setVideoSrc("/cloudy.mp4");
+              setVideoSrc(cloudyVideo);
               break;
             case "broken clouds":
-              setVideoSrc("/ice.mp4");
+              setVideoSrc(iceVideo);
               break;
             case "mist":
-              setVideoSrc("/foggy.mp4");
+              setVideoSrc(foggyVideo);
               break;
             case "thunderstorm":
-              setVideoSrc("/lightning.mp4");
+              setVideoSrc(lightningVideo);
               break;
             case "rain":
             case "drizzle":
-              setVideoSrc("/rain.mp4");
+              setVideoSrc(rainVideo);
               break;
             case "snow":
-              setVideoSrc("/snow.mp4");
+              setVideoSrc(snowVideo);
               break;
             case "clear":
-              setVideoSrc("/sunny.jpg");
+              setVideoSrc(sunnyImage);
               break;
             default:
-              setVideoSrc("");  // Kein Video, wenn keine passende Bedingung vorliegt
+              setVideoSrc("");
           }
         })
         .catch((error) => {
@@ -75,11 +78,11 @@ const WeatherDisplay = ({ lat, lon, city, unit }) => {
   }, [lat, lon, city, unit]);
 
   useEffect(() => {
-    if(videoRef.current) {
+    if (videoRef.current && videoSrc.endsWith('.mp4')) {
       videoRef.current.load();
       videoRef.current.play();
     }
-  }, [videoSrc])
+  }, [videoSrc]);
 
   if (error) {
     return <div className="error-message">{error}</div>;
@@ -105,7 +108,7 @@ const WeatherDisplay = ({ lat, lon, city, unit }) => {
       <p>Wind: {weather.wind.speed} m/s</p>
       <p>Luftfeuchtigkeit: {weather.main.humidity}%</p>
 
-      {/* Video oder Bild anzeigen, wenn vorhanden */}
+      {/* Video oder Bild anzeigen */}
       {videoSrc && videoSrc.endsWith('.mp4') ? (
         <video ref={videoRef} className="weather-video" autoPlay loop muted>
           <source src={videoSrc} type="video/mp4" />
