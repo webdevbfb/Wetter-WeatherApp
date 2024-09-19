@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Importiere die Dateien aus dem src-Ordner
-import cloudyVideo from '../assets/cloudy.mp4';
-import iceVideo from '../assets/ice.mp4';
-import foggyVideo from '../assets/foggy.mp4';
-import lightningVideo from '../assets/lightning.mp4';
-import rainVideo from '../assets/rain.mp4';
-import snowVideo from '../assets/snow.mp4';
-import sunnyImage from '../assets/sunny.jpg';
+import cloudyVideo from '../cloudy.mp4';
+import iceVideo from '../ice.mp4';
+import foggyVideo from '../foggy.mp4';
+import lightningVideo from '../lightning.mp4';
+import rainVideo from '../rain.mp4';
+import snowVideo from '../snow.mp4';
+import sunnyImage from '../sunny.jpg';
 
 const WeatherDisplay = ({ lat, lon, city, unit }) => {
   const [weather, setWeather] = useState(null);
