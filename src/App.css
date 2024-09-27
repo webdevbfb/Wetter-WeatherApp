@@ -1,47 +1,35 @@
 /* Standard (Nachtmodus) */
 :root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  --primary-color: #3a9ad9;     /* Himmelblau */
-  --secondary-color: #1f3a93;   /* Dunkelblau */
-  --accent-color: #dfe4ea;      /* Hellgrau */
-  --bg-dark: #2f3640c2;           /* Dunkelgrau */
-  --my-dark: #222935;           /* Meine farbe */
-  --text-light: #ffffff;        /* Weiß */
-  --text-dark: #213547;         /* Dunkelgrau */
-  --hover-color: #287dbb;       /* Dunkleres Himmelblau */
-  --fa-primary-color: #cfcfcf;
-  --fa-secondary-color: #f6f924;
-  --fa-secondary-opacity: 0.8;
+  --primary-color: #3a9ad9;     
+  --secondary-color: #1f3a93;   
+  --accent-color: #dfe4ea;      
+  --bg-dark: #2f3640c2;         
+  --my-dark: #222935;           
+  --text-light: #ffffff;        
+  --text-dark: #213547;         
+  --hover-color: #287dbb;       
 
   color-scheme: light dark;
 }
 
 /* Tagmodus */
 .light-mode {
-  --primary-color: #f39c12;     /* Sonnengelb */
-  --secondary-color: #e67e22;   /* Orangeton */
-  --accent-color: #f1f2f6;      /* Helles Grau */
-  --bg-dark: #d8d8d8be;           /* Weiß */
-  --my-dark: #ecf0f1;           /* Hellgrau */
-  --text-light: #000000;        /* Schwarz */
-  --text-dark: #213547;         /* Dunkelgrau */
-  --hover-color: #d35400;       /* Dunkleres Orange */
+  --primary-color: #f39c12;     
+  --secondary-color: #e67e22;   
+  --accent-color: #f1f2f6;      
+  --bg-dark: #d8d8d8be;        
+  --my-dark: #ecf0f1;           
+  --text-light: #000000;        
+  --text-dark: #213547;         
+  --hover-color: #d35400;       
 }
 
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
   background-color: var(--bg-dark);
   color: var(--text-light);
-  position: relative;
-  overflow: hidden;
+  overflow: auto;  /* Scrollen ermöglichen */
 }
 
 body.light-mode {
@@ -49,39 +37,14 @@ body.light-mode {
   color: var(--text-dark);
 }
 
-.card.light-mode {
-  background-color: var(--accent-color);
-  color: var(--text-dark);
-}
-
-.button {
-  background-color: var(--primary-color);
-}
-
-/* Schräg gestellte Balken im Hintergrund */
-body::before, body::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -50%;
-  width: 200%;
-  height: 100%;
-  z-index: -1;
-  background: linear-gradient(120deg, var(--primary-color) 50%, var(--secondary-color) 50%);
-  transform: skewY(-15deg);
-}
-
-body::after {
-  opacity: 0.5;
-}
-
-/* Hauptkarte der App */
 .card {
   background-color: var(--my-dark);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: var(--text-light);
+  max-width: 90%; /* Verhindert, dass die Karte zu breit wird */
+  margin: 0 auto; /* Zentriert die Karte auf der Seite */
 }
 
 .box {
@@ -90,6 +53,8 @@ body::after {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: var(--text-light);
+  max-width: 90%; /* Box-Größe beschränken */
+  margin: 0 auto;
 }
 
 h1 {
@@ -109,8 +74,8 @@ i {
 
 .local-time {
   font-size: 0.8em;
-  color: #666; /* Leicht abgesetzte Farbe */
-  margin-left: 10px; /* Platz zwischen Stadt und Uhrzeit */
+  color: #666;
+  margin-left: 10px;
 }
 
 button, input {
@@ -161,12 +126,6 @@ input::placeholder {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.made-by {
-  margin-bottom: 0;
-  color: #8383835d;
-  text-align: end;
-}
-
 .weather-info h2 {
   font-size: 2em;
   margin-top: 0rem;
@@ -184,18 +143,11 @@ input::placeholder {
   color: var(--secondary-color);
 }
 
-.weather-icon {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-}
-
 .weather-icon img {
-  width: 100%;
-  height: 100%;
+  width: 100px; /* Kleinere Icons */
+  height: auto;
 }
 
-/* Video passend eingebettet */
 .weather-video, .weather-image {
   width: 100%;
   height: auto;
@@ -203,55 +155,112 @@ input::placeholder {
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-/* Temperatur-Umschalter */
-.temperature-toggle {
-  margin-top: 20px;
-}
-
-.temperature-toggle button {
-  background-color: var(--secondary-color);
-}
-
-.temperature-toggle button:hover {
-  background-color: var(--hover-color);
 }
 
 .error-message {
-  color: #ff4d4d; /* Helles Rot für den Fehlertext */
-  background-color: #ffe6e6; /* Leichtes Rot für den Hintergrund */
-  border: 1px solid #ff0000; /* Roter Rand */
+  color: #ff4d4d;
+  background-color: #ffe6e6;
+  border: 1px solid #ff0000;
   padding: 10px;
   margin: 20px 10px 0 10px;
   border-radius: 5px;
-  font-size: 1.2em; /* Größerer Text */
-  font-weight: bold; /* Fettgedruckter Text */
-  text-align: center; /* Zentrierter Text */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  border-radius: 10px;
+  margin-top: 20px;
+}
 
-/* Helle Farbpalette im "light"-Modus */
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--accent-color);
-    color: var(--text-dark);
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+footer p {
+  margin: 0;
+  
+}
+
+/* Responsive Design mit @media Queries */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .box {
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  }
+    
+  .card {
+    padding: 1.5rem;
+  }
+
+  .weather-info h2 {
+    font-size: 1.5em;
+  }
+
+  .weather-info .temperature {
+    font-size: 2em;
+  }
+
+  .weather-icon img {
+    width: 80px; /* Icons auf Tablets verkleinern */
+  }
+
+  button, input {
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
+
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.2em;
   }
 
   .card {
-    background-color: var(--accent-color);
-    color: var(--text-dark);
+    padding: 1rem;
   }
 
-  input {
-    background-color: #fff;
-    color: var(--text-dark);
-    border: 1px solid #ddd;
+  .weather-info h2 {
+    font-size: 1.2em;
   }
 
-  button {
-    background-color: var(--primary-color);
+  .weather-info .temperature {
+    font-size: 1.8em;
+  }
+
+  .weather-icon img {
+    width: 60px; /* Icons auf kleinen Bildschirmen noch kleiner */
+  }
+
+  button, input {
+    padding: 5px 10px;
+    font-size: 0.8em;
+  }
+
+  .mode-toggle {
+    font-size: large;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: center;
   }
 }
